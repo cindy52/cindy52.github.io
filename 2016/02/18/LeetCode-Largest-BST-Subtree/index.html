@@ -3,17 +3,21 @@
 <head>
   <meta charset="utf-8">
   
-  <title>A Coder&#39;s Peaceful Life.</title>
+  <title>LeetCode-Largest-BST-Subtree | A Coder&#39;s Peaceful Life.</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description">
-<meta property="og:type" content="website">
-<meta property="og:title" content="A Coder's Peaceful Life.">
-<meta property="og:url" content="http://cindy52.github.io/index.html">
+  <meta name="description" content="Largest BST subtree in a binary tree
+Use a bottom up approach. First check if the subtree is BST, if it is DFS to go upper, else return false;If it doesn’t need to be a subtree, use top-down approach.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="LeetCode-Largest-BST-Subtree">
+<meta property="og:url" content="http://cindy52.github.io/2016/02/18/LeetCode-Largest-BST-Subtree/index.html">
 <meta property="og:site_name" content="A Coder's Peaceful Life.">
-<meta property="og:description">
+<meta property="og:description" content="Largest BST subtree in a binary tree
+Use a bottom up approach. First check if the subtree is BST, if it is DFS to go upper, else return false;If it doesn’t need to be a subtree, use top-down approach.">
+<meta property="og:updated_time" content="2016-02-18T22:41:45.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="A Coder's Peaceful Life.">
-<meta name="twitter:description">
+<meta name="twitter:title" content="LeetCode-Largest-BST-Subtree">
+<meta name="twitter:description" content="Largest BST subtree in a binary tree
+Use a bottom up approach. First check if the subtree is BST, if it is DFS to go upper, else return false;If it doesn’t need to be a subtree, use top-down approach.">
   
     <link rel="alternative" href="/atom.xml" title="A Coder&#39;s Peaceful Life." type="application/atom+xml">
   
@@ -61,9 +65,7 @@
   </div>
 </div>
       <div class="outer">
-        <section id="main">
-  
-    <article id="post-LeetCode-Largest-BST-Subtree" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-LeetCode-Largest-BST-Subtree" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2016/02/18/LeetCode-Largest-BST-Subtree/" class="article-date">
   <time datetime="2016-02-18T22:10:45.000Z" itemprop="datePublished">2016-02-18</time>
@@ -76,8 +78,8 @@
       <header class="article-header">
         
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/02/18/LeetCode-Largest-BST-Subtree/">LeetCode-Largest-BST-Subtree</a>
+    <h1 class="article-title" itemprop="name">
+      LeetCode-Largest-BST-Subtree
     </h1>
   
 
@@ -100,96 +102,20 @@
     </footer>
   </div>
   
-</article>
-
-
+    
+<nav id="article-nav">
   
-    <article id="post-LeetCode-WordPatternII" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2016/02/17/LeetCode-WordPatternII/" class="article-date">
-  <time datetime="2016-02-17T22:06:23.000Z" itemprop="datePublished">2016-02-17</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/02/17/LeetCode-WordPatternII/">LeetCode WordPatternII</a>
-    </h1>
+    <a href="/2016/02/17/LeetCode-WordPatternII/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">LeetCode WordPatternII</div>
+    </a>
   
+</nav>
 
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Word Pattern</p>
-<p>Because Word PatternI has space between words, we can use split and then use hash map to record and compare.<br>Word PatternII has no space, we don’t know how to separate a word. Use DFS to separate a word from the string. If the assumption of one pattern to one word can’t go through, then add one charactor to the word corresponding to the pattern. If all assumption related to this pattern can’t go through, then backtracing to change the rule of previous pattern.</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">wordPatternMatch</span><span class="params">(String pattern, String str)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> dfs(pattern, str, <span class="number">0</span>, <span class="number">0</span>, <span class="keyword">new</span> HashMap&lt;String, String&gt;(), <span class="keyword">new</span> HashSet&lt;String&gt;());</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">boolean</span> <span class="title">dfs</span><span class="params">(String pattern, String str, <span class="keyword">int</span> patternStart, <span class="keyword">int</span> strStart, HashMap&lt;String, String&gt; map, HashSet&lt;String&gt; set)</span> </span>&#123;</span><br><span class="line">    	<span class="keyword">if</span> (patternStart == pattern.length() &amp;&amp; strStart == str.length()) &#123;</span><br><span class="line">    		<span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">    	&#125;</span><br><span class="line">    	<span class="keyword">if</span> (patternStart == pattern.length() || strStart == str.length()) &#123;</span><br><span class="line">    		<span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">    	&#125;</span><br><span class="line">    	String key = pattern.substring(patternStart, patternStart + <span class="number">1</span>);</span><br><span class="line">    	<span class="keyword">if</span> (map.containsKey(key)) &#123;</span><br><span class="line">    		<span class="keyword">if</span> (str.startsWith(map.get(key))) &#123;</span><br><span class="line">    			<span class="keyword">return</span> dfs(pattern, str, patternStart + <span class="number">1</span>, strStart + map.get(key).length(), map, set);</span><br><span class="line">    		&#125;</span><br><span class="line">    		<span class="keyword">else</span> &#123;</span><br><span class="line">    			<span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">    		&#125;</span><br><span class="line">    	&#125;</span><br><span class="line">    	<span class="keyword">else</span> &#123;</span><br><span class="line">    		<span class="keyword">for</span> (<span class="keyword">int</span> i = strStart; i &lt; str.length(); i++) &#123;</span><br><span class="line">    			<span class="keyword">if</span> (set.contains(str.substring(strStart, i + <span class="number">1</span>))) &#123;</span><br><span class="line">    				<span class="keyword">continue</span>;</span><br><span class="line">    			&#125;</span><br><span class="line">    			map.put(key, str.substring(strStart, i + <span class="number">1</span>));</span><br><span class="line">    			set.add(str.substring(strStart, i + <span class="number">1</span>));</span><br><span class="line">    			<span class="keyword">if</span> (dfs(pattern, str, patternStart + <span class="number">1</span>, i + <span class="number">1</span>, map, set)) &#123;</span><br><span class="line">    				<span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">    			&#125;</span><br><span class="line">    			map.remove(key);</span><br><span class="line">    			ser.remove(str.substring(strStart, i + <span class="number">1</span>));</span><br><span class="line">    		&#125;</span><br><span class="line">    		<span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">    	&#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://cindy52.github.io/2016/02/17/LeetCode-WordPatternII/" data-id="ciksusbzy00040y0l9615lmhk" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LeetCode/">LeetCode</a></li></ul>
-
-    </footer>
-  </div>
   
 </article>
 
-
-  
-    <article id="post-hello-world" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2016/02/17/hello-world/" class="article-date">
-  <time datetime="2016-02-17T22:04:18.000Z" itemprop="datePublished">2016-02-17</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/02/17/hello-world/">Hello World</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Welcome to <a href="http://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="http://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="http://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="http://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="http://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="http://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="http://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://cindy52.github.io/2016/02/17/hello-world/" data-id="ciksusbzs00030y0ljahiowi0" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-  
 </section>
         
           
