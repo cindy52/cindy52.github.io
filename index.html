@@ -63,6 +63,88 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-LeetCode-Word-Ladder" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/02/20/LeetCode-Word-Ladder/" class="article-date">
+  <time datetime="2016-02-21T04:16:28.000Z" itemprop="datePublished">2016-02-20</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/02/20/LeetCode-Word-Ladder/">LeetCode-Word-Ladder</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>A diagram problem. Imagine each word in the dic as a node in a diagram. Use BFS. Use a set to cache the word which is visited.</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">ladderLength</span><span class="params">(String beginWord, String endWord, Set&lt;String&gt; wordList)</span> </span>&#123;</span><br><span class="line">        wordList.add(endWord);</span><br><span class="line">        Queue&lt;String&gt; queue = <span class="keyword">new</span> LinkedList&lt;&gt;();</span><br><span class="line">        HashSet&lt;String&gt; set = <span class="keyword">new</span> HashSet&lt;&gt;();</span><br><span class="line">        queue.offer(beginWord);</span><br><span class="line">        set.add(beginWord);</span><br><span class="line">        <span class="keyword">int</span> res = <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">int</span> cur = <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">int</span> next = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">while</span> (!queue.isEmpty()) &#123;</span><br><span class="line">            String str = queue.poll();</span><br><span class="line">            cur--;</span><br><span class="line">            </span><br><span class="line">            <span class="keyword">for</span> (String word : findWord(str, wordList)) &#123;</span><br><span class="line">                <span class="keyword">if</span> (word.equals(endWord)) &#123;</span><br><span class="line">                <span class="keyword">return</span> res + <span class="number">1</span>;</span><br><span class="line">            &#125;</span><br><span class="line">                <span class="keyword">if</span> (!set.contains(word)) &#123;</span><br><span class="line">                    set.add(word);</span><br><span class="line">                    queue.offer(word);</span><br><span class="line">                    next++;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span> (cur == <span class="number">0</span>) &#123;</span><br><span class="line">                res++;</span><br><span class="line">                cur = next;</span><br><span class="line">                next = <span class="number">0</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">private</span> List&lt;String&gt; <span class="title">findWord</span><span class="params">(String target, Set&lt;String&gt; wordList)</span> </span>&#123;</span><br><span class="line">        List&lt;String&gt; result = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">        <span class="keyword">char</span>[] arr = target.toCharArray();</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; arr.length; i++) &#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">char</span> c = <span class="string">'a'</span>; c &lt;= <span class="string">'z'</span>; c++) &#123;</span><br><span class="line">                <span class="keyword">if</span> (arr[i] == c) &#123;</span><br><span class="line">                    <span class="keyword">continue</span>;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">char</span> temp = arr[i];</span><br><span class="line">                arr[i] = c;</span><br><span class="line">                String s = <span class="keyword">new</span> String(arr);</span><br><span class="line">                <span class="keyword">if</span> (wordList.contains(s)) &#123;</span><br><span class="line">                    result.add(s);</span><br><span class="line">                &#125;</span><br><span class="line">                arr[i] = temp;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> result;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://cindy52.github.io/2016/02/20/LeetCode-Word-Ladder/" data-id="cil36h6jb0006lm94ezciicv1" class="article-share-link">Share</a>
+      
+        <a href="http://cindy52.github.io/2016/02/20/LeetCode-Word-Ladder/#disqus_thread" class="article-comment-link">Comments</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LeetCode/">LeetCode</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-LeetCode-LRU-Cache" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/02/20/LeetCode-LRU-Cache/" class="article-date">
+  <time datetime="2016-02-21T02:29:52.000Z" itemprop="datePublished">2016-02-20</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/02/20/LeetCode-LRU-Cache/">LeetCode-LRU-Cache</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Use linked hashmap, the value of the hashmap is the linked list node has the key and value variable. Need to mention that, the value of the key in hashmap is not the value of corresponding key, however is the previous listnode.</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">LRUCache</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> HashMap&lt;Integer, ListNode&gt; map;</span><br><span class="line">    ListNode dummy;</span><br><span class="line">    ListNode tail;</span><br><span class="line">    <span class="keyword">int</span> capacity;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">LRUCache</span><span class="params">(<span class="keyword">int</span> capacity)</span> </span>&#123;</span><br><span class="line">        map = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line">        <span class="keyword">this</span>.capacity = capacity;</span><br><span class="line">        dummy = <span class="keyword">new</span> ListNode(<span class="number">0</span>, <span class="number">0</span>);</span><br><span class="line">        tail = dummy;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">get</span><span class="params">(<span class="keyword">int</span> key)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (!map.containsKey(key)) &#123;</span><br><span class="line">            <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> &#123;</span><br><span class="line">            moveToTail(key);</span><br><span class="line">            <span class="keyword">return</span> map.get(key).next.val;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">set</span><span class="params">(<span class="keyword">int</span> key, <span class="keyword">int</span> value)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (map.containsKey(key)) &#123;</span><br><span class="line">            map.get(key).next.val = value;</span><br><span class="line">            moveToTail(key);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">if</span> (map.size() == capacity) &#123;</span><br><span class="line">                ListNode node = dummy.next;</span><br><span class="line">                dummy.next = node.next;</span><br><span class="line">                map.remove(node.key);</span><br><span class="line">                <span class="keyword">if</span> (dummy.next != <span class="keyword">null</span>) &#123;</span><br><span class="line">                    map.put(dummy.next.key, dummy);</span><br><span class="line">                &#125;</span><br><span class="line">                </span><br><span class="line">            &#125;</span><br><span class="line">            tail.next = <span class="keyword">new</span> ListNode(key, value);</span><br><span class="line">            map.put(key, tail);</span><br><span class="line">            tail = tail.next;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">moveToTail</span><span class="params">(<span class="keyword">int</span> key)</span> </span>&#123;</span><br><span class="line">        ListNode node = map.get(key);</span><br><span class="line">        ListNode cur = node.next;</span><br><span class="line">        <span class="keyword">if</span> (cur == tail) &#123;</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        map.put(cur.next.key, node);</span><br><span class="line">        node.next = node.next.next;</span><br><span class="line">        tail.next = cur;</span><br><span class="line">        cur.next = <span class="keyword">null</span>;</span><br><span class="line">        map.put(key, tail);</span><br><span class="line">        tail = cur;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">private</span> <span class="class"><span class="keyword">class</span> <span class="title">ListNode</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> key;</span><br><span class="line">        <span class="keyword">int</span> val;</span><br><span class="line">        ListNode next;</span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="title">ListNode</span><span class="params">(<span class="keyword">int</span> key, <span class="keyword">int</span> val)</span> </span>&#123;</span><br><span class="line">            <span class="keyword">this</span>.key = key;</span><br><span class="line">            <span class="keyword">this</span>.val = val;</span><br><span class="line">            <span class="keyword">this</span>.next = next;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://cindy52.github.io/2016/02/20/LeetCode-LRU-Cache/" data-id="cil36h6jh000alm94c7ro59ni" class="article-share-link">Share</a>
+      
+        <a href="http://cindy52.github.io/2016/02/20/LeetCode-LRU-Cache/#disqus_thread" class="article-comment-link">Comments</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LeetCode/">LeetCode</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-LeetCode-Count-Univalue-Subtree" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2016/02/19/LeetCode-Count-Univalue-Subtree/" class="article-date">
@@ -90,7 +172,9 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://cindy52.github.io/2016/02/19/LeetCode-Count-Univalue-Subtree/" data-id="cikufobgk0000d8xr99m0fy0c" class="article-share-link">Share</a>
+      <a data-url="http://cindy52.github.io/2016/02/19/LeetCode-Count-Univalue-Subtree/" data-id="cil36h5m90000lm94ytdn0qf8" class="article-share-link">Share</a>
+      
+        <a href="http://cindy52.github.io/2016/02/19/LeetCode-Count-Univalue-Subtree/#disqus_thread" class="article-comment-link">Comments</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LeetCode/">LeetCode</a></li></ul>
@@ -131,7 +215,9 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://cindy52.github.io/2016/02/18/LeetCode-Largest-BST-Subtree/" data-id="cikufobhe0006d8xrgzbaik2u" class="article-share-link">Share</a>
+      <a data-url="http://cindy52.github.io/2016/02/18/LeetCode-Largest-BST-Subtree/" data-id="cil36h6je0008lm94zi70dc0u" class="article-share-link">Share</a>
+      
+        <a href="http://cindy52.github.io/2016/02/18/LeetCode-Largest-BST-Subtree/#disqus_thread" class="article-comment-link">Comments</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LeetCode/">LeetCode</a></li></ul>
@@ -171,7 +257,9 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://cindy52.github.io/2016/02/17/LeetCode-WordPatternII/" data-id="cikufobha0004d8xruas9yy9y" class="article-share-link">Share</a>
+      <a data-url="http://cindy52.github.io/2016/02/17/LeetCode-WordPatternII/" data-id="cil36h6j60004lm947lj585qh" class="article-share-link">Share</a>
+      
+        <a href="http://cindy52.github.io/2016/02/17/LeetCode-WordPatternII/#disqus_thread" class="article-comment-link">Comments</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LeetCode/">LeetCode</a></li></ul>
@@ -218,7 +306,9 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://cindy52.github.io/2016/02/17/hello-world/" data-id="cikufobh70003d8xr77ijga0v" class="article-share-link">Share</a>
+      <a data-url="http://cindy52.github.io/2016/02/17/hello-world/" data-id="cil36h6j00003lm94l7bgcs9o" class="article-share-link">Share</a>
+      
+        <a href="http://cindy52.github.io/2016/02/17/hello-world/#disqus_thread" class="article-comment-link">Comments</a>
       
       
     </footer>
@@ -243,6 +333,14 @@
       <ul>
         
           <li>
+            <a href="/2016/02/20/LeetCode-Word-Ladder/">LeetCode-Word-Ladder</a>
+          </li>
+        
+          <li>
+            <a href="/2016/02/20/LeetCode-LRU-Cache/">LeetCode-LRU-Cache</a>
+          </li>
+        
+          <li>
             <a href="/2016/02/19/LeetCode-Count-Univalue-Subtree/">LeetCode-Count-Univalue-Subtree</a>
           </li>
         
@@ -252,10 +350,6 @@
         
           <li>
             <a href="/2016/02/17/LeetCode-WordPatternII/">LeetCode WordPatternII</a>
-          </li>
-        
-          <li>
-            <a href="/2016/02/17/hello-world/">Hello World</a>
           </li>
         
       </ul>
@@ -276,7 +370,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/02/">February 2016</a><span class="archive-list-count">4</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/02/">February 2016</a><span class="archive-list-count">6</span></li></ul>
     </div>
   </div>
 
@@ -304,6 +398,18 @@
   
 </nav>
     
+<script>
+  var disqus_shortname = '9plpmHbnOH';
+  
+  (function(){
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/count.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+
 
 <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
 
